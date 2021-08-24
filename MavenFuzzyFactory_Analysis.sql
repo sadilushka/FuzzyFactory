@@ -36,6 +36,7 @@ group by wp.pageview_url;
 
 -- Задание 2. Analyzing Conversion Funnel Tests. 
 -- Сравнить процентное соотношение удачно проведенных покупок при 2 разных страницах оплаты.
+
 select min(wp.created_at), min(wp.website_pageview_id) from website_pageviews wp 
     left join website_sessions ws on ws.website_session_id = wp.website_session_id
 where wp.pageview_url = '/billing-2'; 
@@ -66,7 +67,7 @@ group by 1;
 
 -- Задание 3. Customer discounts. Создать таблицу с данными о персональных скидках.
 -- Назначить топ-50 покупателей по общей сумме покупок скидку 10%, топ-300 - 5%.
--- Учесть, что не нужно учитывать покупки, которые были возвращены.
+-- Не учитывать покупки, которые были возвращены.
 
 create table if not exists buyers_discounts as (
 	with buyers_ranks as (
